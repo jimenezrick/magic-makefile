@@ -21,10 +21,11 @@ generates a single binary.
 ---------------
 
   There is a simple hello world program written in C in src/, so then
-just do:
+just run:
 
 	$ make
-	# And later to clean
+	# And later to clean:
 	$ make clean
 
-  The Makefile outside src/ just invokes recursively the Makefile in src/.
+  The Makefile outside src/ just invokes recursively the Makefile in
+src/.
