@@ -4,5 +4,5 @@
 
 void bar()
 {
-	printf("This is a program example\n");
+	printf(MSG);
 }
