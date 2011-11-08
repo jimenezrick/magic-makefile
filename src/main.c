@@ -1,7 +1,7 @@
 #include "main.h"
 #include "aux.h"
 
-void foo()
+void foo(void)
 {
 	bar();
 }

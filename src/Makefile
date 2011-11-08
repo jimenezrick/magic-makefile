@@ -12,9 +12,18 @@ BIN  = main
 all: $(BIN)
 
 $(BIN): $(OBJS)
+ifeq ($(suffix $(SRCS)), ".c")
+	$(CC) $(LDFLAGS) -o $@ $^
+else
+	$(CXX) $(LDFLAGS) -o $@ $^
+endif
 
 depend: $(SRCS)
+ifeq ($(suffix $(SRCS)), ".c")
 	$(CC) -MM -MP $^ > $@
+else
+	$(CXX) -MM -MP $^ > $@
+endif
 
 clean:
 	rm -f $(BIN) *.o depend

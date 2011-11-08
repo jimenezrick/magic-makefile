@@ -2,7 +2,7 @@
 
 #include "aux.h"
 
-void bar()
+void bar(void)
 {
 	printf(MSG);
 }
