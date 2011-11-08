@@ -1,0 +1,20 @@
+ Nice Makefile
+===============
+
+  This is a simple Makefile that serves as a template for C/C++ projects
+with several files which generates a single binary. The nice thing about
+the Makefile is that it generates automatically the dependence rules and
+that is only necessary to customize a few variables to set the desired
+compilation flags.
+
+  The C++ files extension is assumed to be .cpp, so feel free to adjust
+that if necessary.
+
+  The source code should be placed in src/ where also there is a nice
+Makefile which handles automatically the dependencies between files.
+
+  Outside, here in this directory, there is a very simple Makefile which
+calls recursively to the Makefile in src/ for `make' and `make clean'.
+
+  To try Makefile, there is in src/ a simple Hello world program written
+in C with 2 code files and 2 headers.
