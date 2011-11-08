@@ -3,23 +3,29 @@ CFLAGS   = $(DEFS) -std=c99 -Wall -pedantic
 CXXFLAGS = $(DEFS) -Weffc++ -Wall -pedantic
 LDFLAGS  = -s
 
-SRCS = $(wildcard *.c *.cpp)
-OBJS = $(patsubst %.c,%.o,$(patsubst %.cpp,%.o,$(SRCS)))
-BIN  = main
+SRC = $(wildcard *.c *.cpp)
+OBJ = $(patsubst %.c,%.o,$(patsubst %.cpp,%.o,$(SRC)))
+BIN = main
+
+ifeq ($(firstword $(suffix $(SRC))), .c)
+LANG = C
+else
+LANG = CXX
+endif
 
 .PHONY: all clean
 
 all: $(BIN)
 
-$(BIN): $(OBJS)
-ifeq ($(suffix $(SRCS)), ".c")
+$(BIN): $(OBJ)
+ifeq ($(LANG), C)
 	$(CC) $(LDFLAGS) -o $@ $^
 else
 	$(CXX) $(LDFLAGS) -o $@ $^
 endif
 
-depend: $(SRCS)
-ifeq ($(suffix $(SRCS)), ".c")
+depend: $(SRC)
+ifeq ($(LANG), C)
 	$(CC) -MM -MP $^ > $@
 else
 	$(CXX) -MM -MP $^ > $@
