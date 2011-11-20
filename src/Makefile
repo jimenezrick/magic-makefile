@@ -7,13 +7,15 @@ SRC = $(wildcard *.c *.cpp)
 OBJ = $(patsubst %.c,%.o,$(patsubst %.cpp,%.o,$(SRC)))
 BIN = main
 
+PREFIX=/usr/local
+
 ifeq ($(firstword $(suffix $(SRC))), .c)
 LANG = C
 else
 LANG = CXX
 endif
 
-.PHONY: all clean
+.PHONY: all install uninstall clean
 
 all: $(BIN)
 
@@ -30,6 +32,12 @@ ifeq ($(LANG), C)
 else
 	$(CXX) -MM -MP $^ > $@
 endif
+
+install:
+	install $(BIN) $(DESTDIR)$(PREFIX)/bin
+
+uninstall:
+	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN)
 
 clean:
 	rm -f $(BIN) *.o depend
