@@ -33,7 +33,7 @@ else
 	$(CXX) -MM -MP $^ > $@
 endif
 
-install:
+install: all
 	install $(BIN) $(DESTDIR)$(PREFIX)/bin
 
 uninstall:
