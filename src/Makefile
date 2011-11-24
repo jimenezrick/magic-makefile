@@ -29,11 +29,11 @@ else
 	$(CXX) $(LDFLAGS) -o $@ $^
 endif
 
-depend: $(SRCS)
+%.d: %$(EXT)
 ifeq ($(LANG), C)
-	$(CC) -MM -MP $^ > $@
+	$(CC) -MM -MP -MT $$(echo $@ | sed s/.d/.o/) -MT $@ $< >$@
 else
-	$(CXX) -MM -MP $^ > $@
+	$(CXX) -MM -MP -MT $$(echo $@ | sed s/.d/.o/) -MT $@ $< >$@
 endif
 
 install: all
@@ -43,7 +43,6 @@ uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/$(BIN)
 
 clean:
-	rm -f $(BIN) *.o depend
+	rm -f $(BIN) *.o *.d
 
--include depend
-#-include $(SRCS:$(EXT)=.d)
+-include $(SRCS:$(EXT)=.d)
