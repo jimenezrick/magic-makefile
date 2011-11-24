@@ -10,10 +10,7 @@ the dependencies between the C/C++ files and their headers.
 ---------------
 
   Copy src/Makefile to your source code directory and edit it to adjust
-a few variables.
-
-  The C++ file extension is assumed to be .cpp, so adjust it if
-necessary. For simplicity, it is also assumed that your project only
+a few variables. For simplicity, it is assumed that your project only
 generates a single binary.
 
 
@@ -27,5 +24,4 @@ just run:
 	# And later to clean:
 	$ make clean
 
-  The Makefile outside src/ just invokes recursively the Makefile in
-src/.
+The Makefile outside src/ just invokes recursively the Makefile in src/.

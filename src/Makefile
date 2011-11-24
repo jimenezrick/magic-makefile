@@ -5,13 +5,14 @@ CFLAGS   = $(DEFS) $(INCS) $(LIBS) -std=c99 -Wall -pedantic
 CXXFLAGS = $(DEFS) $(INCS) $(LIBS) -Weffc++ -Wall -pedantic
 LDFLAGS  = -s
 
-SRC = $(wildcard *.c *.cpp)
-OBJ = $(patsubst %.c,%.o,$(patsubst %.cpp,%.o,$(SRC)))
-BIN = main
+SRCS = $(wildcard *.c *.cc *.cpp *.cxx)
+EXT  = $(firstword $(suffix $(SRCS)))
+OBJS = $(patsubst %$(EXT),%.o,$(SRCS))
+BIN  = main
 
 PREFIX=/usr/local
 
-ifeq ($(firstword $(suffix $(SRC))), .c)
+ifeq ($(EXT), .c)
 LANG = C
 else
 LANG = CXX
@@ -21,14 +22,14 @@ endif
 
 all: $(BIN)
 
-$(BIN): $(OBJ)
+$(BIN): $(OBJS)
 ifeq ($(LANG), C)
 	$(CC) $(LDFLAGS) -o $@ $^
 else
 	$(CXX) $(LDFLAGS) -o $@ $^
 endif
 
-depend: $(SRC)
+depend: $(SRCS)
 ifeq ($(LANG), C)
 	$(CC) -MM -MP $^ > $@
 else
