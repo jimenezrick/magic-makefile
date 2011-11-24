@@ -1,6 +1,8 @@
 DEFS     = '-DMSG="Hello world!\n"'
-CFLAGS   = $(DEFS) -std=c99 -Wall -pedantic
-CXXFLAGS = $(DEFS) -Weffc++ -Wall -pedantic
+INCS     =
+LIBS     =
+CFLAGS   = $(DEFS) $(INCS) $(LIBS) -std=c99 -Wall -pedantic
+CXXFLAGS = $(DEFS) $(INCS) $(LIBS) -Weffc++ -Wall -pedantic
 LDFLAGS  = -s
 
 SRC = $(wildcard *.c *.cpp)
