@@ -1,13 +1,7 @@
-.PHONY: all install uninstall clean
+.PHONY: all
 
 all:
 	$(MAKE) -C src $@
 
-install:
-	$(MAKE) -C src $@
-
-uninstall:
-	$(MAKE) -C src $@
-
-clean:
+.DEFAULT:
 	$(MAKE) -C src $@
