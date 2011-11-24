@@ -7,7 +7,7 @@ LDFLAGS  = -s
 
 SRCS = $(wildcard *.c *.cc *.cpp *.cxx)
 EXT  = $(firstword $(suffix $(SRCS)))
-OBJS = $(patsubst %$(EXT),%.o,$(SRCS))
+OBJS = $(SRCS:$(EXT)=.o)
 BIN  = main
 
 PREFIX=/usr/local
@@ -46,3 +46,4 @@ clean:
 	rm -f $(BIN) *.o depend
 
 -include depend
+#-include $(SRCS:$(EXT)=.d)
