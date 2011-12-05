@@ -3,7 +3,7 @@ INCS     =
 LIBS     =
 CFLAGS   = $(DEFS) $(INCS) $(LIBS) -std=c99 -Wall -pedantic
 CXXFLAGS = $(DEFS) $(INCS) $(LIBS) -Weffc++ -Wall -pedantic
-LDFLAGS  = -s
+LDFLAGS  =
 
 SRCS = $(wildcard *.c *.cc *.cpp *.cxx)
 EXT  = $(firstword $(suffix $(SRCS)))
@@ -18,9 +18,16 @@ else
 LANG = CXX
 endif
 
-.PHONY: all install uninstall clean
+.PHONY: all debug strip install uninstall clean
 
 all: $(BIN)
+
+debug: CFLAGS   += -g
+debug: CXXFLAGS += -g
+debug: all
+
+strip: all
+	strip $(BIN)
 
 $(BIN): $(OBJS)
 ifeq ($(LANG), C)
