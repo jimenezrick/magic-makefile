@@ -1,9 +1,9 @@
 DEFS     = '-DMSG="Hello world!\n"'
 INCS     =
 LIBS     =
-CFLAGS   = $(DEFS) $(INCS) $(LIBS) -std=c99 -Wall -pedantic
-CXXFLAGS = $(DEFS) $(INCS) $(LIBS) -Weffc++ -Wall -pedantic
-LDFLAGS  =
+CFLAGS   = $(DEFS) $(INCS) -std=c99 -Wall -pedantic
+CXXFLAGS = $(DEFS) $(INCS) -Weffc++ -Wall -pedantic
+LDFLAGS  = $(LIBS)
 
 SRCS = $(wildcard *.c *.cc *.cpp *.cxx)
 EXT  = $(firstword $(suffix $(SRCS)))
