@@ -1,9 +1,14 @@
-DEFS     = '-DMSG="Hello world!\n"'
-INCS     =
-LIBS     =
-CFLAGS   = $(DEFS) $(INCS) -std=c99 -Wall -pedantic
-CXXFLAGS = $(DEFS) $(INCS) -Weffc++ -Wall -pedantic
-LDFLAGS  = $(LIBS)
+DEFS = '-DMSG="Hello world!\n"'
+INCS =
+LIBS =
+
+CFLAGS   = $(DEFS) $(INCS) -std=c99 -Wall -pedantic -O2
+CXXFLAGS = $(DEFS) $(INCS) -Weffc++ -Wall -pedantic -O2
+LDFLAGS  = $(LIBS) -s
+
+CFLAGS_DEBUG   = $(DEFS) $(INCS) -std=c99 -Wall -pedantic -g
+CXXFLAGS_DEBUG = $(DEFS) $(INCS) -Weffc++ -Wall -pedantic -g
+LDFLAGS_DEBUG  = $(LIBS)
 
 SRCS = $(wildcard *.c *.cc *.cpp *.cxx)
 EXT  = $(firstword $(suffix $(SRCS)))
@@ -22,8 +27,9 @@ endif
 
 all: $(BIN)
 
-debug: CFLAGS   += -g
-debug: CXXFLAGS += -g
+debug: CFLAGS   = $(CFLAGS_DEBUG)
+debug: CXXFLAGS = $(CXXFLAGS_DEBUG)
+debug: LDFLAGS  = $(LDFLAGS_DEBUG)
 debug: all
 
 strip: all
