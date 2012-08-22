@@ -1,5 +1,5 @@
-  Nice Makefile
-=================
+  Magic Makefile
+==================
 
   This is a generic Makefile for simple C/C++ projects with automatic
 generation of dependency rules. So that it is not necessary to specify
