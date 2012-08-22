@@ -45,9 +45,9 @@ endif
 
 %.d: %$(EXT)
 ifeq ($(LANG), C)
-	$(CC) -MM -MP -MT $$(echo $@ | sed s/.d/.o/) -MT $@ $< >$@
+	$(CC) -MM -MP -MT $(patsubst %.d,%.o,$@) -MT $@ $< >$@
 else
-	$(CXX) -MM -MP -MT $$(echo $@ | sed s/.d/.o/) -MT $@ $< >$@
+	$(CXX) -MM -MP -MT $(patsubst %.d,%.o,$@) -MT $@ $< >$@
 endif
 
 install: all
