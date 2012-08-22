@@ -13,6 +13,7 @@ LDFLAGS_DEBUG  = $(LIBS)
 SRCS = $(wildcard *.c *.cc *.cpp *.cxx)
 EXT  = $(firstword $(suffix $(SRCS)))
 OBJS = $(SRCS:$(EXT)=.o)
+DEPS = $(SRCS:$(EXT)=.d)
 BIN  = main
 
 PREFIX=/usr/local
@@ -58,4 +59,4 @@ uninstall:
 clean:
 	rm -f $(BIN) *.o *.d
 
--include $(SRCS:$(EXT)=.d)
+-include $(DEPS)
