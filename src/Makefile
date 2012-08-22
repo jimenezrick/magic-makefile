@@ -2,12 +2,12 @@ DEFS = '-DMSG="Hello world!\n"'
 INCS =
 LIBS =
 
-CFLAGS   = $(DEFS) $(INCS) -std=c99 -Wall -pedantic -O2
-CXXFLAGS = $(DEFS) $(INCS) -Weffc++ -Wall -pedantic -O2
+CFLAGS   = $(DEFS) $(INCS) -O2 -Wall -ansi -pedantic
+CXXFLAGS = $(DEFS) $(INCS) -O2 -Wall -ansi -pedantic -Weffc++
 LDFLAGS  = $(LIBS) -s
 
-CFLAGS_DEBUG   = $(DEFS) $(INCS) -std=c99 -Wall -pedantic -g
-CXXFLAGS_DEBUG = $(DEFS) $(INCS) -Weffc++ -Wall -pedantic -g
+CFLAGS_DEBUG   = $(DEFS) $(INCS) -g -Wall -ansi -pedantic
+CXXFLAGS_DEBUG = $(DEFS) $(INCS) -g -Wall -ansi -pedantic -Weffc++
 LDFLAGS_DEBUG  = $(LIBS)
 
 SRCS = $(wildcard *.c *.cc *.cpp *.cxx)
